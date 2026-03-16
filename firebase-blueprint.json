@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and security settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["user", "analyst", "admin"] },
+        "riskScore": { "type": "number" },
+        "creditHealth": { "type": "number" },
+        "behavioralBaseline": { "type": "object" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Financial transaction record",
+      "type": "object",
+      "properties": {
+        "transactionId": { "type": "string" },
+        "userId": { "type": "string" },
+        "amount": { "type": "number" },
+        "recipient": { "type": "string" },
+        "category": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "location": { "type": "string" },
+        "deviceFingerprint": { "type": "string" },
+        "riskScore": { "type": "number" },
+        "status": { "type": "string", "enum": ["PENDING", "APPROVED", "BLOCKED", "FLAGGED"] }
+      },
+      "required": ["transactionId", "userId", "amount", "status"]
+    },
+    "FraudAlert": {
+      "title": "Fraud Alert",
+      "description": "Security alert for suspicious activity",
+      "type": "object",
+      "properties": {
+        "alertId": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["OPEN", "RESOLVED", "DISMISSED"] }
+      },
+      "required": ["alertId", "userId", "type", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "Financial transactions"
+    },
+    "/alerts/{alertId}": {
+      "schema": "FraudAlert",
+      "description": "Fraud alerts"
+    }
+  }
+}

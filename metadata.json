@@ -1,0 +1,9 @@
+{
+  "name": "Smart Fraud Guard Wallet",
+  "description": "AI-Powered Secure Fintech Wallet with Fraud Intelligence, Digital Twin, and Behavioral Biometrics.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

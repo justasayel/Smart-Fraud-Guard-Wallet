@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Fields: uid, displayName, email, role, riskScore, creditHealth, behavioralBaseline
+    //
+    // Collection: transactions
+    // Fields: transactionId, userId, amount, recipient, category, timestamp, location, deviceFingerprint, riskScore, status
+    //
+    // Collection: alerts
+    // Fields: alertId, userId, type, message, timestamp, status
+    //
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         request.auth.token.email == "asabsagh@gmail.com");
+    }
+
+    function isAnalyst() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'analyst' || isAdmin());
+    }
+
+    // User Profile Rules
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAnalyst();
+      allow create: if isAuthenticated() && request.auth.uid == userId && request.resource.data.role == 'user';
+      allow update: if isOwner(userId) && request.resource.data.role == resource.data.role;
+      allow delete: if isAdmin();
+    }
+
+    // Transaction Rules
+    match /transactions/{transactionId} {
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.userId || isAnalyst());
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAnalyst();
+      allow delete: if isAdmin();
+    }
+
+    // Alert Rules
+    match /alerts/{alertId} {
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.userId || isAnalyst());
+      allow create: if isAdmin() || isAnalyst();
+      allow update: if isAnalyst();
+      allow delete: if isAdmin();
+    }
+  }
+}
