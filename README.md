@@ -112,7 +112,7 @@ This diagram shows the overall system architecture:
 ---
 
 ### System Workflow
-![Workflow](Transaction Risk Assessment-2026-03-16-164449.png)
+![Workflow](SystemWorkFlow.png)
 
 This diagram illustrates the **transaction process**:
 
