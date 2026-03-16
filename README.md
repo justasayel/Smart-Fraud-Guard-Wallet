@@ -40,7 +40,7 @@ The upgraded version transforms it into a **next-generation intelligent financia
 ## App Interface
 
 ### 1️⃣ Home Dashboard
-![Home](images/home.png)
+![Home](Home.png)
 
 - Total balance card  
 - Credit health indicator  
@@ -52,7 +52,7 @@ The upgraded version transforms it into a **next-generation intelligent financia
 ---
 
 ### 2️⃣ Wallet
-![Wallet](images/wallet.png)
+![Wallet](Wallet.png)
 
 - Manage bank accounts and cards  
 - View balances  
@@ -63,7 +63,7 @@ The upgraded version transforms it into a **next-generation intelligent financia
 ---
 
 ### 3️⃣ Financial Analysis
-![Analysis](images/analysis.png)
+![Analysis](Analysis.png)
 
 - Spending analytics  
 - Income vs expense charts  
@@ -74,7 +74,7 @@ The upgraded version transforms it into a **next-generation intelligent financia
 ---
 
 ### 4️⃣ Loans
-![Loans](images/loans.png)
+![Loans](Loans.png)
 
 - View active loans  
 - Loan balance tracking  
@@ -85,7 +85,7 @@ The upgraded version transforms it into a **next-generation intelligent financia
 ---
 
 ### 5️⃣ Profile
-![Profile](images/profile.png)
+![Profile](Profile.png)
 
 - Personal info management  
 - Security settings  
@@ -112,7 +112,7 @@ This diagram shows the overall system architecture:
 ---
 
 ### System Workflow
-![Workflow](images/workflow.png)
+![Workflow](Transaction Risk Assessment-2026-03-16-164449.png)
 
 This diagram illustrates the **transaction process**:
 
@@ -125,19 +125,6 @@ This diagram illustrates the **transaction process**:
    - High: Block and request verification  
 5. Verified transactions are completed  
 
----
-
-### AI Training & Fraud Pipeline
-![AI Pipeline](images/ai_pipeline.png)
-
-This diagram shows the **AI model workflow**:
-
-- Collect and preprocess transaction and behavior data  
-- Feature extraction for spending patterns, device info, and fraud indicators  
-- Train anomaly detection and fraud classification models  
-- Evaluate and validate accuracy  
-- Deploy the AI engine as a secure API  
-- Integrate with real-time transaction analysis and fraud alert system  
 
 ---
 
