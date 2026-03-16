@@ -99,7 +99,7 @@ The upgraded version transforms it into a **next-generation intelligent financia
 ## System Diagrams
 
 ### Architecture Diagram
-![Architecture](images/Architecture_Diagram.png)
+![Architecture](Architecture_Diagram.png)
 
 This diagram shows the overall system architecture:
 
